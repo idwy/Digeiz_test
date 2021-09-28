@@ -69,7 +69,7 @@ def create_unit(data):
     mall_id = data.get('mall_id')
     if(Mall.query.filter(Mall.id == mall_id).first() is not None):
         unit = Unit(name, mall_id)
-        db.session.add(mall)
+        db.session.add(unit)
         db.session.commit()
         return unit
     else:
@@ -77,7 +77,7 @@ def create_unit(data):
 
 
 def update_unit(unit_id, data):
-    unit = Unit.query.filter(Unit.id == unit_id).one()
+
     if(Unit.query.filter(Unit.id == unit_id).first() is not None):
         unit = Unit.query.filter(Unit.id == unit_id).one()
         unit.name = data.get('name')

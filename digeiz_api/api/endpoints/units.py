@@ -52,10 +52,10 @@ class UnitCollection(Resource):
 
 
 @ns_units.route('/<int:id>')
-class unitItem(Resource):
+class UnitItem(Resource):
     @app.response(200, 'Success response ', ApiModels.unit_definition_response)
     @app.response(500, 'Error response ', ApiModels.error_response)
-    def get(self):
+    def get(self, id):
         try:
             return marshal(Unit.query.filter(Unit.id == id).one(), ApiModels.unit_definition_response), 200
         except:

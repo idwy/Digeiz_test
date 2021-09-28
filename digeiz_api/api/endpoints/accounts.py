@@ -45,7 +45,7 @@ class AccountCollection(Resource):
 
 @ns_accounts.route('/<int:id>')
 @app.response(404, 'account not found.')
-class accountItem(Resource):
+class AccountItem(Resource):
     @app.response(200, 'Success response ', ApiModels.account_definition_response)
     @app.response(500, 'Error response ', ApiModels.error_response)
     @app.response(404, 'DB result not found ', ApiModels.error_response)
@@ -110,7 +110,7 @@ class accountItem(Resource):
 
 
 @ns_accounts.route('/<int:account_id>/malls')
-class accountMallsCollection(Resource):
+class AccountMallsCollection(Resource):
     @app.response(200, 'Success ', ApiModels.mall_definition_response)
     @app.response(404, 'DB result not found ', ApiModels.error_response)
     def get(self, account_id):
@@ -126,7 +126,7 @@ class accountMallsCollection(Resource):
 
 @ns_accounts.route('/<int:account_id>/units')
 @app.response(404, 'account not found.')
-class accountUnitsCollection(Resource):
+class AccountUnitsCollection(Resource):
     @app.response(200, 'Success ', ApiModels.mall_definition_response)
     @app.response(404, 'DB result not found ', ApiModels.error_response)
     def get(self, account_id):

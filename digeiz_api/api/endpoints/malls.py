@@ -52,10 +52,10 @@ class MallCollection(Resource):
 
 
 @ns_malls.route('/<int:id>')
-class mallItem(Resource):
+class MallItem(Resource):
     @app.response(200, 'Success response ', ApiModels.mall_definition_response)
     @app.response(500, 'Error response ', ApiModels.error_response)
-    def get(self):
+    def get(self, id):
         try:
             return marshal(Mall.query.filter(Mall.id == id).one(), ApiModels.mall_definition_response), 200
         except:

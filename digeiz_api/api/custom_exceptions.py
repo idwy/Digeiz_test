@@ -19,5 +19,5 @@ class MallNotFoundException(Exception):
 
 class UnitNotFoundException(Exception):
 
-    def __init__(self, mall_id):
+    def __init__(self, unit_id):
         self.unit_id = unit_id

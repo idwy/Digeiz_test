@@ -3,7 +3,7 @@ from flask_restplus import Api
 from flask_sqlalchemy import SQLAlchemy
 
 flask_api = Flask(__name__)
-flask_api.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test_api.db'
+flask_api.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///dev_api.db'
 app = Api(app=flask_api)
 db = SQLAlchemy(flask_api)
 
