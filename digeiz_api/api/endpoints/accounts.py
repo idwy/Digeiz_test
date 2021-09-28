@@ -2,7 +2,7 @@ import logging
 
 from flask import request
 from flask_restplus import Resource, marshal
-from digeiz_api.api.db_access_module import create_account, delete_account, update_account
+from digeiz_api.api.db_access_module import create_account, bulk_insert_accounts, delete_account, update_account
 from digeiz_api.api.custom_exceptions import AccountNotFoundException, current_time
 from digeiz_api.api.ApiModels import ApiModels
 from digeiz_api.app import app
@@ -33,6 +33,27 @@ class AccountCollection(Resource):
         try:
             account = create_account(data)
             return marshal(account, ApiModels.account_definition_response), 200
+        except exc.SQLAlchemyError:
+            return marshal(
+                {'error': 'Undefined DB error', 'requested_at': current_time()},
+                ApiModels.error_response), 500
+        except:
+            return marshal(
+                {'error': f'Server error', 'requested_at': current_time()},
+                ApiModels.error_response), 500
+
+
+@ns_accounts.route('/all')
+class AccountBulkInsert(Resource):
+
+    @app.expect(ApiModels.accounts_definition_request)
+    @app.response(500, 'Error response ', ApiModels.error_response)
+    @app.response(200, 'Success ', ApiModels.error_response)
+    def post(self):
+        data = request.json
+        try:
+            accounts = bulk_insert_accounts(data)
+            return marshal(accounts, ApiModels.account_definition_response), 200
         except exc.SQLAlchemyError:
             return marshal(
                 {'error': 'Undefined DB error', 'requested_at': current_time()},

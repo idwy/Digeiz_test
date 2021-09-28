@@ -15,6 +15,10 @@ class ApiModels:
         'name': fields.String(required=True, description='Account name'),
     })
 
+    accounts_definition_request = app.model('AccountsRequestModel', {
+        'names': fields.List(fields.String(example="user1"))
+    })
+
     mall_definition_response = app.model('MallResponseModel', {
         'id': fields.Integer(
             readOnly=True,

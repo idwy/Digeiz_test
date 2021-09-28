@@ -53,7 +53,7 @@ OK
 ```
 
 ### Main Features
-- Open API spec that may be used for server and client generation in different languages
+- Open API spec that may be used for server and client generation in different languages ( Bulk insert for Accounts )
 - Customized Error handling
 - Unit tests
 
@@ -65,4 +65,3 @@ OK
 
 ### Enhancements
 - Add more unit/integration tests for better code coverage
-- Add Bulk insert endpoint

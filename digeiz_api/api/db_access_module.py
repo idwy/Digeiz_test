@@ -11,6 +11,14 @@ def create_account(data):
     return account
 
 
+def bulk_insert_accounts(data):
+    names = data.get('names')
+    accounts_to_insert = [Account(name) for name in names]
+    db.session.bulk_save_objects(accounts_to_insert, return_defaults = True)
+    db.session.commit()
+    return accounts_to_insert
+
+
 def update_account(account_id, data):
 
     if(Account.query.filter(Account.id == account_id).first() is not None):
